@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع صورة ✨يزن✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Cairo', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: bgMove 10s ease infinite;
+      color: white;
+    }
+
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      animation: typing 3s steps(30) 1;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 18ch; }
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      margin-bottom: 15px;
+      text-align: center;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      background: rgba(255,255,255,0.3);
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      background: #1f80ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #1f80ff;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0057d8;
+      box-shadow: 0 0 30px #1f80ff;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 90%;
+      display: none;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0,255,255,0.7);
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .shake {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-8px); }
+      100% { transform: translateX(0); }
+    }
+
+    #caption {
+      display: none;
+      font-size: 26px;
+      margin-top: 10px;
+      color: #ffeb3b;
+      text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    #exitBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background: crimson;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 20px crimson;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 20px crimson; }
+      50% { transform: scale(1.1); box-shadow: 0 0 40px red; }
+      100% { transform: scale(1); box-shadow: 0 0 20px crimson; }
+    }
+
+    #exitBtn:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+<body>
+  <h2>أدخل كلمة السر لعرض الصورة</h2>
+  <div id="loginBox">
+    <input type="password" id="password" placeholder="أدخل كلمة السر">
+    <br>
+    <button onclick="checkPassword()">تأكيد</button>
+  </div>
+
+  <div id="caption">هذه هي صورة ✨يزن✨</div>
+  <img id="secretImage" src="" alt="الصورة السرية">
+  <button id="exitBtn" onclick="exitSite()">الخروج من الموقع</button>
+
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("password").value;
+      var box = document.getElementById("loginBox");
+      var image = document.getElementById("secretImage");
+      var caption = document.getElementById("caption");
+      var exitBtn = document.getElementById("exitBtn");
+
+      if(password === "2244"){
+        box.style.display = "none";
+        caption.style.display = "block";
+        image.src = "https://i.postimg.cc/y6SCknfX/file-00000000c78061f98580a33b0a15e8a8.png";
+        image.style.display = "block";
+        setTimeout(()=>{ exitBtn.style.display = "inline-block"; }, 500);
+      } else {
+        box.classList.add("shake");
+        setTimeout(() => box.classList.remove("shake"), 400);
+        alert("كلمة السر خاطئة!");
+      }
+    }
+
+    function exitSite(){
+      window.location.href = "about:blank";
+    }
+  </script>
+</body>
+</html>
